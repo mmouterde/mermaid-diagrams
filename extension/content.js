@@ -1,25 +1,11 @@
 (function () {
-
-  const $ = (selector, ctx = document) => [].slice.call(ctx.querySelectorAll(selector));
-
-  document.addEventListener('DOMContentLoaded', () => {
-    let elems = $('[lang="mermaid"]');
-
-    const replaceChart = (codeElem) => {
-      const code = codeElem.textContent;
-      elem.insertAdjacentHTML('afterend', `<div class="mermaid">${code}</div>`);
-      elem.style.display = 'none';
-    };
-
-    elems.forEach(elem => {
-      const codeElem = $('code', elem)[0];
-      replaceChart(codeElem);
-    });
-
-    elems = $('.language-mermaid');
-    elems.forEach(replaceChart);
-
-    window.mermaid.init();
-  });
-
+    $("pre.code:contains('graph '):visible",).waitUntilExists(function () {
+        let elems = $("pre.code:contains('graph '):visible");
+        elems.each((index, elem) => {
+            const code = elem.textContent;
+            elem.insertAdjacentHTML('afterend', `<div class="mermaid">${code}</div>`);
+            elem.style.display = 'none';
+        });
+        window.mermaid.init();
+    }, true);
 }());

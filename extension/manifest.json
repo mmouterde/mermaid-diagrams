@@ -14,9 +14,10 @@
   },
   "content_scripts": [
     {
-      "run_at": "document_start",
+      "run_at": "document_idle",
       "matches": [
         "https://github.com/*",
+        "https://energiency.githost.io/*",
         "https://gist.github.com/*"
       ],
       "css": [
@@ -24,6 +25,8 @@
       ],
       "js": [
         "mermaid.min.js",
+        "jquery-1.11.2.js",
+        "jquery.waituntilexists.js",
         "content.js"
       ]
     }
